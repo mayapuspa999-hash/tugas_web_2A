@@ -1,0 +1,305 @@
+/* ============ RESET & BASE ============ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --night: #150f16;          /* latar utama, hitam keunguan */
+  --night-soft: #1e1620;     /* permukaan kartu */
+  --line: rgba(255, 158, 196, 0.16);
+  --pink: #ff9ec4;           /* aksen utama */
+  --pink-soft: #ffd3e4;
+  --pink-deep: #c9648f;
+  --text: #f4e9ee;
+  --text-muted: #b6a2ac;
+  --radius: 22px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--text);
+  background-color: var(--night);
+  /* cahaya pink lembut di belakang konten */
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(255, 158, 196, 0.13), transparent 45%),
+    radial-gradient(circle at 90% 20%, rgba(201, 100, 143, 0.12), transparent 40%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+h1, h2 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============ ANIMASI MASUK ============ */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 0 1px var(--line), 0 0 28px rgba(255, 158, 196, 0.28); }
+  50%      { box-shadow: 0 0 0 1px var(--line), 0 0 44px rgba(255, 158, 196, 0.45); }
+}
+
+.reveal {
+  opacity: 0;
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ============ HEADER ============ */
+.site-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 2.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+}
+
+.brand-dot {
+  color: var(--pink);
+}
+
+.header-note {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+
+/* ============ LAYOUT HALAMAN ============ */
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* ============ KARTU BIODATA (Flexbox) ============ */
+.bio-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2.5rem;
+  background-color: var(--night-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+}
+
+/* --- Foto --- */
+.bio-photo {
+  flex: 0 0 auto;
+  margin: 0 auto;
+}
+
+.photo-frame {
+  width: 172px;
+  height: 172px;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(140deg, var(--pink), var(--pink-deep) 60%, var(--night-soft));
+  animation: glow 4.5s ease-in-out infinite;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--night-soft);
+}
+
+/* --- Identitas --- */
+.bio-detail {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.bio-detail h1 {
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.bio-tagline {
+  color: var(--pink);
+  font-weight: 400;
+  font-size: 0.92rem;
+  margin-bottom: 1.75rem;
+}
+
+.bio-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.bio-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.bio-row dt {
+  flex: 0 0 130px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--pink-soft);
+}
+
+.bio-row dd {
+  flex: 1 1 200px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.bio-row dd a {
+  color: var(--pink);
+  word-break: break-word;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease;
+}
+
+.bio-row dd a:hover {
+  border-bottom-color: var(--pink);
+}
+
+/* ============ DESKRIPSI ============ */
+.section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--pink);
+}
+
+.section p {
+  max-width: 68ch;
+  margin-bottom: 1.1rem;
+  color: var(--text-muted);
+}
+
+/* ============ FOOTER ============ */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ============ MEDIA QUERY: TABLET ============ */
+@media screen and (max-width: 900px) {
+  .page {
+    padding: 3rem 2rem;
+    gap: 3rem;
+  }
+
+  .bio-card {
+    padding: 2rem;
+    gap: 2rem;
+  }
+}
+
+/* ============ MEDIA QUERY: MOBILE ============ */
+@media screen and (max-width: 600px) {
+  .site-header {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .header-note {
+    display: none;
+  }
+
+  .page {
+    padding: 2.25rem 1.25rem 3rem;
+    gap: 2.5rem;
+  }
+
+  .bio-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.25rem;
+  }
+
+  .photo-frame {
+    width: 140px;
+    height: 140px;
+  }
+
+  .bio-detail {
+    text-align: left;
+    width: 100%;
+  }
+
+  .bio-detail h1 {
+    font-size: 1.55rem;
+  }
+
+  .bio-row dt {
+    flex-basis: 100%;
+  }
+
+  .section h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* ============ AKSESIBILITAS: KURANGI GERAK ============ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    animation: none;
+  }
+
+  .photo-frame {
+    animation: none;
+    box-shadow: 0 0 28px rgba(255, 158, 196, 0.3);
+  }
+}
