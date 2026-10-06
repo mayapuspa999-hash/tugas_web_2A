@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KASIR-JS</title>
+  </head>
+  <body>
+    <h1>Program Kasir Sederhana</h1>
+
+    <script type="text/javascript">
+      // Input data barang menggunakan prompt
+      let namaBarang = prompt("Masukkan nama barang:");
+      let hargaBarang = prompt("Masukkan Harga barang:");
+      let qty = prompt("Masukkan jumlah beli (qty):");
+
+      // Konversi input ke angka
+      let harga = parseFloat(hargaBarang);
+      let jumlah = parseInt(qty);
+
+      // Hitung total harga kotor
+      let total = harga * jumlah;
+
+      // Hitung diskon jika pembelian lebih dari 50.000
+      let diskon = 0;
+      if (total > 50000) {
+        diskon = total * 0.1;
+      }
+
+      // Hitung total pembayaran akhir
+      let pembayaran = total - diskon;
+
+      // Menampilkan Struk Belanja ke layar
+      document.write("<pre>");
+      document.write("++++++++++++++++++++++++++++++<br>");
+      document.write("+                            +<br>");
+      document.write("+ nama   Harga    qty total  +<br>");
+      document.write("+ " + namaBarang + "<br>");
+      document.write(
+        "+        " +
+          harga.toLocaleString("id-ID") +
+          " " +
+          jumlah +
+          "   " +
+          total.toLocaleString("id-ID") +
+          " +<br>",
+      );
+      document.write("+                            +<br>");
+      document.write(
+        "+ total belanja  " + total.toLocaleString("id-ID") + " +<br>",
+      );
+      document.write(
+        "+ diskon          " + diskon.toLocaleString("id-ID") + " +<br>",
+      );
+      document.write(
+        "+ pembayaran     " + pembayaran.toLocaleString("id-ID") + " +<br>",
+      );
+      document.write("+                            +<br>");
+      document.write("++++++++++++++++++++++++++++++");
+      document.write("</pre>");
+    </script>
+  </body>
+</html>
